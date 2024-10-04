@@ -6,6 +6,7 @@ public class Manager extends Staff {
     public Manager() {
 
     }
+
     public Manager(String name, double salary, double allowance) {
         super(name, salary);
         this.allowance = allowance;
@@ -23,9 +24,12 @@ public class Manager extends Staff {
     public double getPaid() {
         return getSalary() + allowance;
     }
+
     @Override
     public String toString() {
-        return String.format("Manager: { name: %s, salary: %.2f, allowance: %.2f, paid: %.2f }",
-                getName(), getSalary(), getAllowance(), getPaid());
+        return "Manager: { name: " + getName() +
+                ", salary: " + getSalary() +
+                ", allowance: " + getAllowance() +
+                ", paid: " + getPaid() + " }";
     }
 }

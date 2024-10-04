@@ -33,6 +33,6 @@ public abstract class Staff {
 
     @Override
     public String toString() {
-        return String.format("Staff: { name: %s, salary: %.2f }", name, salary);
+        return "Staff: { name: " + name + ", salary: " + salary + " }";
     }
 }

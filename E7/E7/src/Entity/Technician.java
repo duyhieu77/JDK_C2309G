@@ -7,7 +7,7 @@ public class Technician extends Staff {
 
     }
 
-    public Technician(String name, double overtimepay,double salary) {
+    public Technician(String name, double overtimepay, double salary) {
         super(name, salary);
         this.overtimepay = overtimepay;
     }
@@ -27,8 +27,9 @@ public class Technician extends Staff {
 
     @Override
     public String toString() {
-        return String.format("Technician: { name: %s, salary: %.2f, overtime pay: %.2f, paid: %.2f }",
-                getName(), getSalary(), getOvertimepay(), getPaid());
+        return "Technician: { name: " + getName() +
+                ", salary: " + getSalary() +
+                ", overtime pay: " + getOvertimepay() +
+                ", paid: " + getPaid() + " }";
     }
-    
 }
