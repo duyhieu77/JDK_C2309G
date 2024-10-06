@@ -50,6 +50,10 @@ public class Account {
         }
     }
 
+    public String getCustomerName() {
+        return this.customer.getName();
+    }
+
     @Override
     public String toString() {
         return "Account{" +

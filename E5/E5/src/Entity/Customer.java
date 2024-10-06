@@ -53,7 +53,7 @@ public class Customer {
                 "ID=" + ID +
                 ", name='" + name + '\'' +
                 ", gender=" + gender +
-                ", discount=" + discount +
+                ", discount %=" + discount +
                 '}';
     }
 }
