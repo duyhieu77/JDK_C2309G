@@ -1,48 +1,40 @@
 package Service;
 
+import Entity.Gender;
 import Entity.Invoice;
-import Entity.Customer;
+import iGeneric.Generic;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class InvoiceService {
-    private List<Invoice> invoices;
+public class InvoiceService implements Generic<Invoice> {
+    private List<Invoice> invoices = new ArrayList<>();
 
-    public InvoiceService() {
-        this.invoices = new ArrayList<>();
+    @Override
+    public void update(Invoice object) {
+
     }
 
-    public void addInvoice(Invoice invoice) {
-        invoices.add(invoice);
+    @Override
+    public Invoice getById(int id) {
+        return invoices.stream()
+                .filter(customer -> customer.getId() == id)
+                .findFirst()
+                .orElse(null);
     }
 
-    public void updateInvoice(Invoice updatedInvoice) {
-        for (int i = 0; i < invoices.size(); i++) {
-            if (invoices.get(i).getId() == updatedInvoice.getId()) {
-                invoices.set(i, updatedInvoice);
-                return;
-            }
-        }
-        System.out.println("Invoice not found!");
-    }
-
-    public Invoice findInvoiceById(int id) {
+    public void DiscountForFemalesInAugust() {
         for (Invoice invoice : invoices) {
-            if (invoice.getId() == id) {
-                return invoice;
+            if (invoice.getCustomer().getGender() == Gender.F && invoice.getDateTime().getMonthValue() == 8) {
+                double discountAmount = invoice.getAmount() * 0.10;
+                invoice.setAmount(invoice.getAmount() - discountAmount);
+                update(invoice);
             }
         }
+    }
+
+    @Override
+    public List<Invoice> getByName(String name) {
         return null;
-    }
-
-    public List<Invoice> listInvoicesByCustomer(Customer customer) {
-        List<Invoice> customerInvoices = new ArrayList<>();
-        for (Invoice invoice : invoices) {
-            if (invoice.getCustomer().getID() == customer.getID()) {
-                customerInvoices.add(invoice);
-            }
-        }
-        return customerInvoices;
     }
 }

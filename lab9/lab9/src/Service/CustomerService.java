@@ -1,32 +1,31 @@
 package Service;
 
+import iGeneric.Generic;
 import Entity.Customer;
-import Entity.Invoice;
-import Generic.Generic;
-import Global.Global;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class CustomerService implements Generic<Customer>{
-    private List<Customer> customers;
+public class CustomerService implements Generic<Customer> {
+    private List<Customer> customers = new ArrayList<>();
 
-    public CustomerService(List<Customer>customers){
-        this.customers = customers;
+    @Override
+    public void update(Customer customer) {
     }
 
     @Override
     public Customer getById(int id) {
-        Optional<Customer> customer = customers.stream()
-                .filter(c -> c.getID() == id)
-                .findFirst();
-        return customer.orElse(null);
+        return customers.stream()
+                .filter(customer -> customer.getID() == id)
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
-    public List<Customer> getByName(String keyword) {
+    public List<Customer> getByName(String name) {
         return customers.stream()
-                .filter(c -> Global.ignoreCase(c.getName(), keyword))
+                .filter(customer -> customer.getName().equalsIgnoreCase(name))
                 .toList();
     }
+
+
 }
